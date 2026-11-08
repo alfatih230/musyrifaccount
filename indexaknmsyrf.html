@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Akun Musyrif</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg1:#e6f2ec; --bg2:#f6f1e3; --orb1:#4fb58f; --orb2:#e2c275; --orb3:#8fd0c0;
+  --text:#14332a; --muted:#4d6b60; --glass:rgba(255,255,255,.55); --glass-b:rgba(255,255,255,.75);
+  --line:rgba(20,51,42,.10); --head:rgba(31,95,74,.88); --headtxt:#fff; --hover:rgba(79,181,143,.16);
+  --accent:#b8902f; --chip:rgba(31,95,74,.10);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg1:#06130f; --bg2:#0d211b; --orb1:#1f8f6b; --orb2:#a8832f; --orb3:#16705a;
+    --text:#eaf5f0; --muted:#9db9ae; --glass:rgba(255,255,255,.07); --glass-b:rgba(255,255,255,.18);
+    --line:rgba(255,255,255,.09); --head:rgba(255,255,255,.10); --headtxt:#f3e3b3; --hover:rgba(255,255,255,.08);
+    --accent:#e2c275; --chip:rgba(255,255,255,.08);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg1:#06130f; --bg2:#0d211b; --orb1:#1f8f6b; --orb2:#a8832f; --orb3:#16705a;
+  --text:#eaf5f0; --muted:#9db9ae; --glass:rgba(255,255,255,.07); --glass-b:rgba(255,255,255,.18);
+  --line:rgba(255,255,255,.09); --head:rgba(255,255,255,.10); --headtxt:#f3e3b3;
+  --hover:rgba(255,255,255,.08); --accent:#e2c275; --chip:rgba(255,255,255,.08);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; padding:48px 18px 56px; color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2)) fixed; position:relative; overflow-x:hidden;
+}
+.orb{position:fixed; border-radius:50%; filter:blur(80px); opacity:.55; z-index:0; pointer-events:none}
+.o1{width:420px;height:420px;background:var(--orb1);top:-120px;left:-100px}
+.o2{width:360px;height:360px;background:var(--orb2);top:30%;right:-120px;opacity:.4}
+.o3{width:380px;height:380px;background:var(--orb3);bottom:-140px;left:25%}
+.wrap{position:relative; z-index:1; max-width:980px; margin:0 auto}
+header{
+  text-align:center; padding:34px 24px; margin-bottom:22px; border-radius:24px;
+  background:var(--glass); border:1px solid var(--glass-b);
+  backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 18px 50px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.eyebrow{font-size:12px; letter-spacing:.28em; text-transform:uppercase; color:var(--accent); font-weight:600}
+h1{font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(32px,6vw,52px); margin:8px 0 12px; font-weight:700; letter-spacing:.01em}
+h1::after{content:""; display:block; width:72px; height:2px; margin:14px auto 0; background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+header p{margin:0 auto; max-width:620px; line-height:1.7; color:var(--muted); font-size:15px}
+header strong{color:var(--text)}
+.tools{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin:0 4px 14px}
+.search{
+  flex:1; min-width:220px; padding:12px 18px; border-radius:999px; font:inherit; font-size:14px; color:var(--text);
+  background:var(--glass); border:1px solid var(--glass-b); outline:none;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+}
+.search::placeholder{color:var(--muted)}
+.search:focus{border-color:var(--accent)}
+.count{font-size:13px; color:var(--muted); padding:8px 14px; border-radius:999px; background:var(--chip)}
+.card{
+  border-radius:24px; overflow:hidden; background:var(--glass); border:1px solid var(--glass-b);
+  backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 18px 50px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.scroll{overflow-x:auto; max-width:100%}
+table{width:100%; border-collapse:collapse; min-width:760px}
+th{
+  background:var(--head); color:var(--headtxt); text-align:left; padding:16px 18px; font-size:12px;
+  letter-spacing:.14em; text-transform:uppercase; font-weight:600; position:sticky; top:0;
+}
+td{padding:14px 18px; border-bottom:1px solid var(--line); font-size:14px; vertical-align:middle}
+td:first-child{color:var(--accent); font-weight:600; width:56px}
+td:nth-child(2){font-weight:500}
+td:nth-child(3){color:var(--muted)}
+tbody tr{transition:background .25s}
+tbody tr:hover{background:var(--hover)}
+tbody tr:last-child td{border-bottom:none}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; padding:4px 10px; border-radius:8px;
+  background:var(--chip); border:1px solid var(--line); white-space:nowrap
+}
+.empty{display:none; text-align:center; padding:28px; color:var(--muted); font-size:14px}
+footer{text-align:center; margin-top:22px; font-size:12px; color:var(--muted); letter-spacing:.08em}
+@media (max-width:600px){
+  body{padding:28px 12px 40px}
+  header{padding:26px 16px}
+  th,td{padding:12px 12px; font-size:13px}
+}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Muraqabah Lughawiyah</div>
+    <h1>Data Akun Musyrif</h1>
+    <p>Silakan masukkan <strong>username</strong> dan <strong>password</strong> berikut untuk login ke aplikasi <strong>Muraqabah Lughawiyah</strong>.</p>
+  </header>
+
+  <div class="tools">
+    <input class="search" id="q" type="search" placeholder="Cari nama, kamar, atau username…" autocomplete="off">
+    <span class="count" id="cnt">32 musyrif</span>
+  </div>
+
+  <div class="card">
+    <div class="scroll">
+      <table>
+        <thead><tr><th>No.</th><th>Nama Musyrif</th><th>Kamar yang Diampu</th><th>Username</th><th>Password</th></tr></thead>
+        <tbody id="tb">
+<tr><td>1</td><td>Ustadz Muhammad Tona’am, S.Ag.</td><td>Abu Bakar Asshiddiq 1&amp;2</td><td><code>tona'am</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>2</td><td>Ustadz Ubaidillah, S.Pd.</td><td>Abu Bakar Asshiddiq 3&amp;4</td><td><code>ubaid</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>3</td><td>Ustadz Muhammad Gazali, S.Ag.</td><td>Umar bin Kahttab 3&amp;4</td><td><code>gazali</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>4</td><td>Ustadz Abdurrahman Jawwaz, S.Ag.</td><td>Umar bin Khattab 5 &amp; Utsman bin Affan 1</td><td><code>jawwaz</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>5</td><td>Ustadz Ismail Daulan</td><td>Utsman bin Affan 2&amp;3</td><td><code>ismail</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>6</td><td>Ustadz Abdul Hamid, S.Pd.</td><td>Ali bin Abi Thalib 1 &amp; Talhah bin Ubaidillah 1</td><td><code>hamid</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>7</td><td>Ustadz Muhammad Habib, S.Pd.</td><td>Ali bin Abi Thalib 2&amp;3</td><td><code>habib</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>8</td><td>Ustadz Yusuf</td><td>Ali bin Abu Thalib 4&amp;5</td><td><code>yusuf</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>9</td><td>Ustadz Lalu Lukmanul Hakim, S.Ag.</td><td>Talhah bin Ubaidillah 2&amp;4</td><td><code>lukman</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>10</td><td>Ustadz Habiburrahman, S.Pd.</td><td>Talhah bin Ubaidillah 3&amp;5</td><td><code>habiburrahman</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>11</td><td>Ustadz Munawwir Ramadhan</td><td>Zubair bin Awwam 1&amp;2</td><td><code>munawwir</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>12</td><td>Ustadz Sahrul</td><td>Zubair bin Awwam 3&amp;4</td><td><code>sahrul</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>13</td><td>Ustadz Ziad Amir Adnan, S.Pd.</td><td>Zubair bin Awwam 5 &amp; Abdurrahma bin Auf 1</td><td><code>ziad</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>14</td><td>Ustadz Muhammad Ja’far Asshodiq, S.Pd.</td><td>Abdurrahman bin Auf 2&amp;3</td><td><code>ja'far</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>15</td><td>Ustadz Vidyapati Adhinugraha Suwardjo</td><td>Abdurrahman bin Auf 4</td><td><code>vidy</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>16</td><td>Ustadz Muhammad Harel Hanafi, S.Pd.</td><td>Abdurrahman bin Auf 5</td><td><code>harel</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>17</td><td>Ustadz Muhammad Yazid Tanazzal, S.Pd.</td><td>Sa’ad bin Abi Waqqas 1&amp;3</td><td><code>yazid</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>18</td><td>Muhammad Iqbal, S.Pd.</td><td>Sa’ad bin Abi Waqqas 2&amp;4</td><td><code>Iqbal</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>19</td><td>Ustadz Zein Zidan Hanafi, S.Pd.</td><td>Sa’ad bin Abi Waqqas 5 &amp; Sa’id bin Zaid 1</td><td><code>zein</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>20</td><td>Ustadz Ambiya Abi Ishlah, S.Ag.</td><td>Sa’id bin Zaid 2&amp;3</td><td><code>ambiya</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>21</td><td>Ustadz Hasanuddin, S.Pd.</td><td>Said bin Zaid 4&amp;5</td><td><code>hasan</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>21</td><td>Ustadz Hizbl Autad, S.Ag.</td><td>Abu Ubaidah bin Al Jarrah 1.A &amp; 1.B</td><td><code>hizbil</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>22</td><td>Ustadz Faisal Nur Akbar, S.Sos</td><td>Abu Ubaidah bin Al Jarrah 2&amp;3</td><td><code>faisal</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>23</td><td>Uatadz Muhammad Risqi</td><td>Abu Ubaidah bin Al Jarrah 4</td><td><code>risqi</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>24</td><td>Ustadz Rifan Maulidan, S.Pd.</td><td>Abu Ubaidah bin Al Jarrah 5 &amp; Abu Hurairah 2</td><td><code>rifan</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>25</td><td>Ustadz Adib Karaman</td><td>Abu Hurairah 1.A &amp; 1.B</td><td><code>adib</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>26</td><td>Ustadz Iskandar Diantara, S.Ag.</td><td>Abu Hurairah 3&amp;4</td><td><code>iskandar</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>27</td><td>Ustadz Muhammad Rafi Putra Wibisono, S.Pd.</td><td>Abu Hurairah 2 &amp; Abdullah bin Mas’ud 2</td><td><code>rafi</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>28</td><td>Ustadz Muhammad Nibal Al Atsary, S.Pd.</td><td>Abdullah bin Mas’ud 4.A &amp; 4.B</td><td><code>nibal</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>29</td><td>Ustadz Umar Zain Sarlata</td><td>Abdullah bin Mas’ud 3 &amp; 5</td><td><code>umar</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>30</td><td>Ustadz Muhammad Muthy Abdullah, S.Pd.</td><td>Khalid bin Walid 1</td><td><code>muthy</code></td><td><code>musyrif123</code></td></tr>
+<tr><td>31</td><td>Ustadz Muhammad Fadhly, S.Pd.</td><td>Khalid bin Walid 3 &amp; 4</td><td><code>fadhly</code></td><td><code>musyrif123</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="empty" id="empty">Tidak ada data yang cocok.</div>
+  </div>
+  <footer>MURAQABAH LUGHAWIYAH</footer>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('q'), rows=[].slice.call(document.querySelectorAll('#tb tr')),
+      cnt=document.getElementById('cnt'), empty=document.getElementById('empty');
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(), n=0;
+    rows.forEach(function(r){
+      var ok=!v||r.textContent.toLowerCase().indexOf(v)>-1;
+      r.style.display=ok?'':'none'; if(ok)n++;
+    });
+    cnt.textContent=n+' musyrif';
+    empty.style.display=n?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>
